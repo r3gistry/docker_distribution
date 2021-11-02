@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine
+FROM golang:1.13-alpine3.12
 
 WORKDIR /tmp/
 
@@ -21,7 +21,7 @@ apk add --no-cache git make \
 && apk del git make
 
 
-FROM alpine:3.11
+FROM alpine:3.12
 
 LABEL maintainer="R3GISTRY"
 LABEL description="Registry in Docker. This is a Docker registry."
