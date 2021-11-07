@@ -18,6 +18,8 @@ $ docker build YOUR_VERSION/ --tag r3gistry/registry:YOUR_VERSION
 $ docker run -v registry:/mnt/registry/ -d --name YOUR_CONTAINER_NAME -p YOUR_PORT:YOUR_PORT r3gistry/registry:YOUR_VERSION serve /mnt/registry/config.yml
 ```
 
+After first run, stop container and make changes to `config.yml` at `registry`.
+
 - To fetch logs of a container:
 
 ```console
