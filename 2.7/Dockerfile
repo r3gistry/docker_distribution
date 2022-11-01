@@ -3,19 +3,19 @@ FROM golang:1.13-alpine3.12
 WORKDIR /tmp/
 
 ADD \
-https://github.com/docker/distribution/archive/v2.7.1.tar.gz \
+https://github.com/distribution/distribution/archive/v2.7.1.tar.gz \
 .
 
 RUN \
 apk add --no-cache git make \
 && tar -xvf v2.7.1.tar.gz \
-&& mkdir -p $GOPATH/src/github.com/docker/distribution/ \
-&& mv distribution-2.7.1/* $GOPATH/src/github.com/docker/distribution/ \
+&& mkdir -p $GOPATH/src/github.com/distribution/distribution/ \
+&& mv distribution-2.7.1/* $GOPATH/src/github.com/distribution/distribution/ \
 && rm -r * \
-&& cd $GOPATH/src/github.com/docker/distribution/ \
+&& cd $GOPATH/src/github.com/distribution/distribution/ \
 && CGO_ENABLED=0 BUILDTAGS=include_oss:include_gcs make clean binaries \
-&& mv bin/registry /usr/local/bin/ \
-&& chmod +x /usr/local/bin/registry \
+&& mv bin/registry /usr/local/bin/distribution \
+&& chmod +x /usr/local/bin/distribution \
 && cd $GOPATH/src/ \
 && rm -r * \
 && apk del git make
@@ -24,14 +24,14 @@ apk add --no-cache git make \
 FROM alpine:3.12
 
 LABEL maintainer="R3GISTRY"
-LABEL description="Registry in Docker. This is a Docker registry."
+LABEL description="Distribution in Docker. This is a opensource registry."
 
-COPY --from=0 /usr/local/bin/registry /usr/local/bin/
+COPY --from=0 /usr/local/bin/distribution /usr/local/bin/
 
 RUN \
 apk add --no-cache ca-certificates apache2-utils
 
-VOLUME ["/mnt/registry/"]
+VOLUME ["/mnt/distribution/"]
 
-ENTRYPOINT ["registry"]
+ENTRYPOINT ["distribution"]
 CMD ["-h"]

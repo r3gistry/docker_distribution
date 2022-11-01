@@ -1,24 +1,24 @@
-## Registry
+## Distribution
 
 ### What is it?
 
-Registry is contributed by [docker](https://github.com/docker/distribution).
+Distribution is contributed by [distribution](https://github.com/distribution/distribution).
 
 ### Example usages
 
 - To build the image:
 
 ```console
-$ docker build YOUR_VERSION/ --tag r3gistry/registry:YOUR_VERSION
+$ docker build YOUR_VERSION/ --tag r3gistry/distribution:YOUR_VERSION
 ```
 
 - To run the container in background:
 
 ```console
-$ docker run -v registry:/mnt/registry/ -d --name YOUR_CONTAINER_NAME -p YOUR_PORT:YOUR_PORT r3gistry/registry:YOUR_VERSION serve /mnt/registry/config.yml
+$ docker run -v distribution:/mnt/distribution/ -d --name YOUR_CONTAINER_NAME -p YOUR_PORT:YOUR_PORT r3gistry/distribution:YOUR_VERSION serve /mnt/distribution/config.yml
 ```
 
-After first run, stop container and make changes to `config.yml` at `registry`.
+After first run, stop container and make changes to `config.yml` at `distribution`.
 
 - To fetch logs of a container:
 
