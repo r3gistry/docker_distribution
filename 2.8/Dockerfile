@@ -3,14 +3,14 @@ FROM golang:1.18-alpine3.16
 WORKDIR /tmp/
 
 ADD \
-https://github.com/distribution/distribution/archive/v2.8.0.tar.gz \
+https://github.com/distribution/distribution/archive/v2.8.1.tar.gz \
 .
 
 RUN \
 apk add --no-cache git make \
-&& tar -xvf v2.8.0.tar.gz \
+&& tar -xvf v2.8.1.tar.gz \
 && mkdir -p $GOPATH/src/github.com/distribution/distribution/ \
-&& mv distribution-2.8.0/* $GOPATH/src/github.com/distribution/distribution/ \
+&& mv distribution-2.8.1/* $GOPATH/src/github.com/distribution/distribution/ \
 && rm -r * \
 && cd $GOPATH/src/github.com/distribution/distribution/ \
 && CGO_ENABLED=0 BUILDTAGS=include_oss:include_gcs make clean binaries \
